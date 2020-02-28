@@ -1,0 +1,29 @@
+{
+  "name": "node-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "nancy": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^6.5.2",
+    "babel-cli": "^6.26.0",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "mailgen": "^2.0.10",
+    "mongoose": "^5.8.11",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.2",
+    "nodemon": "^2.0.2",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "sendgrid": "^5.2.3"
+  }
+}

@@ -1,0 +1,91 @@
+.head
+{
+    font-size: 100px;
+}
+html,body{
+  background-image: url('background.jpeg');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+div{
+    min-height: 225px;
+    min-width: 225px;
+    background-attachment: fixed;
+    background-position: center;
+    border: 1px solid black;
+}
+#gametimer{
+  font-size: 20px;
+}
+form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-family: cursive;
+    color: rgb(128, 13, 13);
+}
+#game{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 70%;
+  width: 70%;
+  margin-left: 14%;
+  background-image: url('backdrop.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #d43737;
+  font-size: 50px;
+  font-style: italic;
+  font-family: cursive;
+}
+.container {
+  padding: 8px;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 25%;
+  top: 35%;
+  width: 50%; /* Full width */
+  height: 50%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+
+#h1{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: white;
+  font-size: 50px;
+}

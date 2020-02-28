@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Game</title>
+        <style>
+            .head
+            {
+                height: 60px;
+                width: 100%;
+                font-size: 50px;
+                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: antiquewhite;
+                margin: 0;
+                padding:0;
+            }
+            div{
+                min-height: 225px;
+                min-width: 225px;
+                background-attachment: fixed;
+                background-position: center;
+                border: 1px solid black;
+            }
+            #gametimer{
+              font-size: 20px;
+              float:right;
+              margin-right:5px;
+              margin-top: 20px
+            }
+        </style>
+    </head>
+    <body>
+        <header class="head">Welcome<span id="gametimer">hh:mm:ss</span></header>
+        <p id="backdrop" style="margin: 1%; padding: 8px "></p>
+        <button  id="game" >Let's Play</button>
+    </body>
+    <script>
+            let imgFlip = 0
+            let count = [0,0,0,0,0,0,0,0,0,0]
+            let imgPosition = [] 
+            let timerSec = 0;
+            let timerMin = 0;
+        document.getElementById("game").addEventListener("click", gameFunction);
+
+        function gameTimer()
+        {
+          timerSec++;
+          if(timerSec == 60)
+          {
+            timerMin++;
+            timerSec = 0;
+          }
+          if(timerSec<10)
+          {
+            
+            document.getElementById("gametimer").innerHTML = `00:0${timerMin}:0${timerSec}`
+          }
+          else{
+          document.getElementById("gametimer").innerHTML = `00:0${timerMin}:${timerSec}`
+          }
+
+          if(timerMin == 1)
+          {
+            alert("time out")
+            location.reload();
+          }
+        }
+
+            function gameFunction(){
+              setInterval(gameTimer,1000);
+                for(let e=0;e<20;e++)
+                {
+                  let x = document.createElement("div");
+                  
+                  x.style.display='inline-block';
+                  x.id = imgFlip;
+                  while(x.childElementCount == 0)
+                  {
+                  let z = document.createElement("img")
+                  let a=["1.jpeg","2.jpeg","3.jpeg","4.jpeg","5.jpeg","6.jpeg","7.jpeg","8.jpeg","9.jpeg","10.jpeg"]
+                  let y = Math.floor(a.length * Math.random())
+                  count[y]++
+                  console.log(count[y]);
+                    if(count[y]<=2)
+                    {
+                        z.setAttribute("src",a[y]);
+                        z.style.visibility = "hidden";
+                        imgPosition[imgFlip] = a[y];
+                        x.appendChild(z)
+                        imgFlip++;
+                    }      
+                  }             
+                  var element = document.getElementById("backdrop");
+                  element.appendChild(x);
+                  x.addEventListener("click",function(){
+                    
+                    flip(this)
+                  })
+                }
+            }
+            
+            let prevElement = null
+            let b = 0;
+            let i = 1
+            let eventTimer;
+            let timer
+            let win = 0;
+            function flip(id)
+            {
+                id = id.id
+                if(prevElement)
+                {
+                  if(id!=prevElement)
+                    b++;
+                }
+                else{
+                  prevElement = id
+                }
+                if(b<2)
+                {
+                  document.getElementById(id).lastChild.style.visibility = "visible"
+                }
+                
+                if(b==1 )
+                {
+                  if(document.getElementById(id).lastChild.src != document.getElementById(prevElement).lastChild.src )
+                  {
+                    console.log("different images");
+                    try{
+                      clearTimeout(timer)
+                    }
+                    catch(e)
+                    {
+                      console.log("ghjgj")
+                      console.log()
+                    }
+                    timer = setTimeout(function()
+                    {
+                      
+                      document.getElementById(id).lastChild.style.visibility = "hidden"
+                      document.getElementById(prevElement).lastChild.style.visibility = "hidden"   
+                      
+                      prevElement = null
+                      b=0            
+                    }, 200);    
+                  }
+                  else 
+                  {
+                    document.getElementById(id).style.pointerEvents = 'none'
+                    document.getElementById(prevElement).style.pointerEvents = 'none'
+                    win+=2;
+                    prevElement = null 
+                    b=0
+                  } 
+                }
+                if(win==20)
+                {
+
+                  setTimeout(function()
+                  {
+                    alert("you Win")
+                    location.reload()
+                  }
+                    ,200)
+                  
+                }                       
+            }
+            
+        </script>
+</html>
