@@ -138,4 +138,23 @@ router.post("/manageComment", async function(req, res) {
   }
 });
 
+router.post("/category", async function(req, res) {
+  try {
+    await userapi.ManageCategory(req.body);
+    let resultOfOnloadCategory = await userapi.OnloadCategory();
+    res.send(resultOfOnloadCategory);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+router.get("/OnloadCategory", async function(req, res) {
+  try {
+    let resultOfOnloadCategory = await userapi.OnloadCategory();
+    res.send(resultOfOnloadCategory);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 module.exports = router;

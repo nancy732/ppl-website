@@ -1,7 +1,6 @@
 var signin = require("./schema/userData");
 var upload = require("./schema/postData");
-var comment = require("./schema/comment");
-
+var Category = require("./schema/category");
 module.exports = {
   user: function(data) {
     return new Promise((resolve, reject) => {
@@ -222,7 +221,6 @@ module.exports = {
         { _id: data._id },
         { $push: { comment: data.comment, commentMail: data.email } },
         function(err, result) {
-          email: String;
           if (err) {
             reject(err);
           } else {
@@ -247,6 +245,37 @@ module.exports = {
           }
         }
       );
+    });
+  },
+
+  ManageCategory: function(data) {
+    return new Promise((resolve, reject) => {
+      console.log("data", data);
+      Category.update(
+        {},
+        { $addToSet: { category: data.category } },
+        { upsert: true },
+        function(err, result) {
+          if (err) {
+            reject(err);
+          } else {
+            console.log("post");
+            resolve(result);
+          }
+        }
+      );
+    });
+  },
+  OnloadCategory: function() {
+    return new Promise((resolve, reject) => {
+      Category.find({}, function(err, result) {
+        if (err) {
+          reject(err);
+        } else {
+          console.log("category", result);
+          resolve(result);
+        }
+      });
     });
   }
 };
